@@ -38,6 +38,7 @@ async function lookupExposedModule<T>(
   exposedModule: string
 ): Promise<T> {
   const container = containerMap[key];
+    console.log("HELLO 2")
   const factory = await container.get(exposedModule);
   const Module = factory();
   return Module as T;
@@ -56,7 +57,7 @@ async function initRemote(container: Container, key: string) {
     await __webpack_init_sharing__('default');
     isDefaultScopeInitialized = true;
   }
-
+  console.log("HELLO 1")
   await container.init(__webpack_share_scopes__.default);
   remoteMap[key] = true;
   return container;
